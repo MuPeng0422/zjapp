@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		fdsfsda
+		fdjksgklfjsd
 	</view>
 </template>
 

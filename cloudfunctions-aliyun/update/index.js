@@ -1,12 +1,12 @@
 'use strict';
 const db = uniCloud.database()
 exports.main = async (event, context) => {
-	const collection = db.collection('unicloud-test')
+	const collection = db.collection('user')
 	const docList = await collection.limit(1).get();
 	if (!docList.data || docList.data.length === 0) {
 		return {
 			status: -1,
-			msg: '集合unicloud-test内没有数据'
+			msg: '没有数据'
 		}
 	}
 	const res = await collection.doc(docList.data[0]._id).update(event);
@@ -21,7 +21,7 @@ exports.main = async (event, context) => {
 	} else {
 		return {
 			status: -1,
-			msg: `集合unicloud-test内没有数据`
+			msg: `没有数据`
 		}
 	}
 };

@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		fdsfsda
+		照相
 	</view>
 </template>
 

@@ -10,15 +10,27 @@
 			}
 		},
 		{
-			"path": "pages/register/index",
+			"path": "pages/ask/index",
 			"style": {
-				"navigationBarTitleText": "注册"
+				"navigationBarTitleText": "询问"
 			}
 		},
 		{
-			"path": "pages/index/index",
+			"path": "pages/photo/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "照相"
+			}
+		},
+		{
+			"path": "pages/loss/index",
+			"style": {
+				"navigationBarTitleText": "计损"
+			}
+		},
+		{
+			"path": "pages/editpassword/index",
+			"style": {
+				"navigationBarTitleText": "修改密码"
 			}
 		}
 	],
@@ -35,7 +47,7 @@
 		"selectedColor": "#007AFF",
 		"list": [
 			{
-				"pagePath": "pages/index/index",
+				"pagePath": "pages/ask/index",
 				"text": "询问"
 			},
 			{

@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		fdsfsda
+		fdsjghfjkdsgfdsgfdags发的时刻国际饭店
 	</view>
 </template>
 

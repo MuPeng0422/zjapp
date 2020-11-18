@@ -8,19 +8,11 @@
 		</view>
 		<view class="form">
 			<u-form :model="form" ref="uForm" :rules="rules">
-				<u-form-item label="账户" prop="username"><u-input type="text" v-model="form.username" /></u-form-item>
+				<u-form-item label="账户" prop="username"><u-input type="text" v-model="form.username" :disabled="true" /></u-form-item>
 				<u-form-item label="密码" prop="password"><u-input type="password" v-model="form.password" /></u-form-item>
 			</u-form>
 			<view class="loginBtn">
 				<u-button type="primary" @click="submit">登录</u-button>
-			</view>
-			<view class="editpassword">
-				<view class="" @click="editpwd">
-					忘记密码？
-				</view>
-				<view class="" @click="register">
-					没有账号？<span>立即注册</span>
-				</view>
 			</view>
 		</view>
 		<u-toast ref="uToast" />
@@ -33,7 +25,7 @@
 			return {
 				src: 'https://cdn.uviewui.com/uview/example/fade.jpg',
 				form: {
-					username: '',
+					username: 'admin',
 					password: ''
 				},
 				rules: {
@@ -63,33 +55,41 @@
 			submit() {
 				this.$refs.uForm.validate(valid => {
 					if (valid) {
-						console.log('123456')
 						uniCloud.callFunction({
-							name: 'get'
+							name: 'login',
+							data: {
+								username: this.form.username
+							}
 						}).then((res) => {
 							uni.hideLoading()
 							console.log(res)
+							if (res.result.data.length === 0) {
+								uniCloud.callFunction({
+									name: 'add',
+									data: this.form
+								}).then((res) => {
+									console.log(res)
+									uni.navigateTo({
+									    url: '/pages/index/index'
+									});
+								})
+							} else {
+								if (res.result.data[0].password !== this.form.password) {
+									this.$refs.uToast.show({
+										title: '密码错误',
+										type: 'error'
+									})
+									return false;
+								} else {
+									uni.switchTab({
+										url: '../ask/index'
+									})
+								}
+							}
 						}).catch((err) => {
 							uni.hideLoading()
 							console.error(err)
 						})
-						// if (this.form.username !== loginData.data.username) {
-						// 	this.$refs.uToast.show({
-						// 		title: '账户错误',
-						// 		type: 'error'
-						// 	})
-						// 	return false;
-						// }
-						
-						// if (this.form.password !== loginData.data.password) {
-						// 	this.$refs.uToast.show({
-						// 		title: '密码错误',
-						// 		type: 'error'
-						// 	})
-						// 	return false;
-						// }
-						console.log('123456')
-						this.$u.route('/pages/index/index');
 					} else {
 						console.log('验证失败');
 					}
