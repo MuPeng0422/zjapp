@@ -81,9 +81,15 @@
 									})
 									return false;
 								} else {
-									uni.switchTab({
-										url: '../ask/index'
+									uni.showLoading({
+										title: '登录中...'
 									})
+									setTimeout(() => {
+										uni.hideLoading()
+										uni.switchTab({
+											url: '../ask/index'
+										})
+									}, 1000)
 								}
 							}
 						}).catch((err) => {

@@ -44,6 +44,7 @@
 		"borderStyle": "black",
 		"backgroundColor": "#FFFFFF",
 		"color": "#8F8F94",
+		"fontSize": "16px",
 		"selectedColor": "#007AFF",
 		"list": [
 			{
